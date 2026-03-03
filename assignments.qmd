@@ -5,3 +5,28 @@ title: "My Assignments"
 On this page, I showcase the assignment I conducted for the \[term and year, e.g. Spring 2024-2025\] EMU660 Decision Making with Analytics course.
 
 Please use left menu to navigate through my assignments.
+
+# Murders Stats
+
+In this part, we will find states with higher murder rates.
+
+```{r}
+library(dslabs)
+data(murders)
+print(murders)
+```
+
+Lets order states based on their murder rates.
+
+```{r}
+murder_rate <- murders$total / murders$population
+print(murders$state[order(murder_rate)])
+```
+
+## The State with minimum murder rate
+
+```{r, echo=FALSE}
+state_with_min = murders$state[which.min(murder_rate)]
+```
+
+Burcu should move to `{r} state_with_min`

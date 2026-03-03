@@ -74,7 +74,7 @@
     "href": "assignments.html",
     "title": "My Assignments",
     "section": "",
-    "text": "On this page, I showcase the assignment I conducted for the [term and year, e.g. Spring 2024-2025] EMU660 Decision Making with Analytics course.\nPlease use left menu to navigate through my assignments.\n\n\n\n Back to top",
+    "text": "On this page, I showcase the assignment I conducted for the [term and year, e.g. Spring 2024-2025] EMU660 Decision Making with Analytics course.\nPlease use left menu to navigate through my assignments.",
     "crumbs": [
       "My Assignments"
     ]
@@ -125,6 +125,16 @@
     "text": "Assignment 2\n\n1 + 1\n\n[1] 2\n\n\n\n\n\n\n Back to top",
     "crumbs": [
       "Assignment 2"
+    ]
+  },
+  {
+    "objectID": "assignments.html#the-state-with-minimum-murder-rate",
+    "href": "assignments.html#the-state-with-minimum-murder-rate",
+    "title": "My Assignments",
+    "section": "The State with minimum murder rate",
+    "text": "The State with minimum murder rate\nBurcu should move to Vermont",
+    "crumbs": [
+      "My Assignments"
     ]
   }
 ]

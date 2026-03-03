@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -173,7 +207,16 @@ ul.task-list li input[type="checkbox"] {
 </li>
     </ul>
     </div>
-    
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#murders-stats" id="toc-murders-stats" class="nav-link active" data-scroll-target="#murders-stats">Murders Stats</a>
+  <ul class="collapse">
+  <li><a href="#the-state-with-minimum-murder-rate" id="toc-the-state-with-minimum-murder-rate" class="nav-link" data-scroll-target="#the-state-with-minimum-murder-rate">The State with minimum murder rate</a></li>
+  </ul></li>
+  </ul>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -203,8 +246,99 @@ ul.task-list li input[type="checkbox"] {
 
 <p>On this page, I showcase the assignment I conducted for the [term and year, e.g.&nbsp;Spring 2024-2025] EMU660 Decision Making with Analytics course.</p>
 <p>Please use left menu to navigate through my assignments.</p>
+<section id="murders-stats" class="level1">
+<h1>Murders Stats</h1>
+<p>In this part, we will find states with higher murder rates.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(murders)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(murders)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  state abb        region population total
+1               Alabama  AL         South    4779736   135
+2                Alaska  AK          West     710231    19
+3               Arizona  AZ          West    6392017   232
+4              Arkansas  AR         South    2915918    93
+5            California  CA          West   37253956  1257
+6              Colorado  CO          West    5029196    65
+7           Connecticut  CT     Northeast    3574097    97
+8              Delaware  DE         South     897934    38
+9  District of Columbia  DC         South     601723    99
+10              Florida  FL         South   19687653   669
+11              Georgia  GA         South    9920000   376
+12               Hawaii  HI          West    1360301     7
+13                Idaho  ID          West    1567582    12
+14             Illinois  IL North Central   12830632   364
+15              Indiana  IN North Central    6483802   142
+16                 Iowa  IA North Central    3046355    21
+17               Kansas  KS North Central    2853118    63
+18             Kentucky  KY         South    4339367   116
+19            Louisiana  LA         South    4533372   351
+20                Maine  ME     Northeast    1328361    11
+21             Maryland  MD         South    5773552   293
+22        Massachusetts  MA     Northeast    6547629   118
+23             Michigan  MI North Central    9883640   413
+24            Minnesota  MN North Central    5303925    53
+25          Mississippi  MS         South    2967297   120
+26             Missouri  MO North Central    5988927   321
+27              Montana  MT          West     989415    12
+28             Nebraska  NE North Central    1826341    32
+29               Nevada  NV          West    2700551    84
+30        New Hampshire  NH     Northeast    1316470     5
+31           New Jersey  NJ     Northeast    8791894   246
+32           New Mexico  NM          West    2059179    67
+33             New York  NY     Northeast   19378102   517
+34       North Carolina  NC         South    9535483   286
+35         North Dakota  ND North Central     672591     4
+36                 Ohio  OH North Central   11536504   310
+37             Oklahoma  OK         South    3751351   111
+38               Oregon  OR          West    3831074    36
+39         Pennsylvania  PA     Northeast   12702379   457
+40         Rhode Island  RI     Northeast    1052567    16
+41       South Carolina  SC         South    4625364   207
+42         South Dakota  SD North Central     814180     8
+43            Tennessee  TN         South    6346105   219
+44                Texas  TX         South   25145561   805
+45                 Utah  UT          West    2763885    22
+46              Vermont  VT     Northeast     625741     2
+47             Virginia  VA         South    8001024   250
+48           Washington  WA          West    6724540    93
+49        West Virginia  WV         South    1852994    27
+50            Wisconsin  WI North Central    5686986    97
+51              Wyoming  WY          West     563626     5</code></pre>
+</div>
+</div>
+<p>Lets order states based on their murder rates.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>murder_rate <span class="ot">&lt;-</span> murders<span class="sc">$</span>total <span class="sc">/</span> murders<span class="sc">$</span>population</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(murders<span class="sc">$</span>state[<span class="fu">order</span>(murder_rate)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Vermont"              "New Hampshire"        "Hawaii"              
+ [4] "North Dakota"         "Iowa"                 "Idaho"               
+ [7] "Utah"                 "Maine"                "Wyoming"             
+[10] "Oregon"               "South Dakota"         "Minnesota"           
+[13] "Montana"              "Colorado"             "Washington"          
+[16] "West Virginia"        "Rhode Island"         "Wisconsin"           
+[19] "Nebraska"             "Massachusetts"        "Indiana"             
+[22] "Kansas"               "New York"             "Kentucky"            
+[25] "Alaska"               "Ohio"                 "Connecticut"         
+[28] "New Jersey"           "Alabama"              "Illinois"            
+[31] "Oklahoma"             "North Carolina"       "Nevada"              
+[34] "Virginia"             "Arkansas"             "Texas"               
+[37] "New Mexico"           "California"           "Florida"             
+[40] "Tennessee"            "Pennsylvania"         "Arizona"             
+[43] "Georgia"              "Mississippi"          "Michigan"            
+[46] "Delaware"             "South Carolina"       "Maryland"            
+[49] "Missouri"             "Louisiana"            "District of Columbia"</code></pre>
+</div>
+</div>
+<section id="the-state-with-minimum-murder-rate" class="level2">
+<h2 class="anchored" data-anchor-id="the-state-with-minimum-murder-rate">The State with minimum murder rate</h2>
+<p>Burcu should move to Vermont</p>
 
 
+</section>
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
